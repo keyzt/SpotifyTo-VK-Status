@@ -10,7 +10,7 @@
 1. Склонируйте репозиторий (или просто скачайте [его](https://github.com/keyzt/SpotifyToVKStatus/archive/master.zip)) и перейдите в директорию с проектом.
 
 	```console
-	git clone https://github.com/keyzt/SpotifyToVKStatus.git
+	git clone https://github.com/soround/SpotifyToVKStatus.git
 	cd SpotifyToVKStatus
 	```
 
