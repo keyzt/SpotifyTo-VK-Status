@@ -5,6 +5,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from VKLight import ( VKLight, VKLightError )
 from .config import ( VKConfig, SpotifyConfig )
+from .logger import logger as logging
 
 
 spotify = spotipy.Spotify(
@@ -40,19 +41,18 @@ def update_status(_current_playing):
 
         if _current_playing != [track, album, artist]:
             set_status(VKConfig.STATUS.format(track=track, album=album, artist=artist))
-            time_now = time.strftime("%H:%M:%S", time.localtime())
-            print(f"[{time_now}] 🎧 Spotify | {track} - {artist}")
+            logging.info(f"🎧 Spotify | {track} - {artist}")
 
         return [track, album, artist]
 
     if not _current_playing is None:
         set_standart_status()
     
-    return 
+    return
 
 
 def set_standart_status() -> None:
-    print("Установлен стандартный статус")
+    logging.info("Установлен стандартный статус")
     return vk.call("status.set", { "text": VKConfig.STANDART_STATUS })
 
 
@@ -62,8 +62,7 @@ def set_status(status) -> None:
 
 if __name__ == '__main__':
     try:
-        # VKConfig.STANDART_STATUS = vk("status.get")['response']['text']
-        print(f"Текущий статус: {VKConfig.STANDART_STATUS}")
+        logging.info(f"Текущий статус: {VKConfig.STANDART_STATUS}")
 
         while True:
             # print("Получаю обновления")
@@ -72,10 +71,10 @@ if __name__ == '__main__':
 
 
     except VKLightError as e:
-        print(e)
+        logging.error(e)
 
     except (SystemExit, KeyboardInterrupt) as e:
         set_standart_status()
 
     except Exception as e:
-        print(e)
+        logging.error(e)
