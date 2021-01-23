@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "spotifyToVKStatus"
 version = "2.0.0"
-description = ""
+description = "Use currently playing track as status in VK.com"
 authors = ["Ivan <pass@gmail.com>"]
 
 packages = [
@@ -13,6 +13,7 @@ python = "^3.8"
 VKLight = "^1.3.1"
 spotipy = "^2.15.0"
 python-dotenv = "^0.14.0"
+loguru = "^0.5.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
